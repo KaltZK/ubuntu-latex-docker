@@ -74,3 +74,23 @@ jobs:
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
+      - name: Build and Publish Docker image to Dockerhub instead of GPR
+        uses: saubermacherag/gpr-docker-publish@master
+        with:
+          IMAGE_TAG: 'v0.0'
+          DOCKERFILE_PATH: '.github/docker/Dockerfile'
+          BUILD_CONTEXT: './'
+          DOCKERHUB_REPOSITORY: 'pinkrobin/gpr-docker-publish-example'
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        env:
+          REGISTRY_TOKEN: ${{ secrets.DOCKERHUB_PAT }}
+
+      # This second step is illustrative and shows how to reference the 
+      # output variables.  This is completely optional.
+      - name: Show outputs of pervious step
+        run: |
+          echo "The name:tag of the Docker Image is: $VAR1"
+          echo "The docker image is hosted at $VAR2"
+        env:
+          VAR1: ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
+          VAR2: ${{ steps.docker.outputs.IMAGE_URL }}
