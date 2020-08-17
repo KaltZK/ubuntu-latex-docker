@@ -77,10 +77,10 @@ jobs:
       - name: Build and Publish Docker image to Dockerhub instead of GPR
         uses: saubermacherag/gpr-docker-publish@master
         with:
-          IMAGE_TAG: '$VERSION'
+          IMAGE_TAG: 'latest'
           DOCKERFILE_PATH: 'Dockerfile'
           BUILD_CONTEXT: './'
-          DOCKERHUB_REPOSITORY: '${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_ID'
+          DOCKERHUB_REPOSITORY: 'kaltzk/ubuntu-latex'
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         env:
           REGISTRY_TOKEN: ${{ secrets.DOCKERHUB_PAT }}
