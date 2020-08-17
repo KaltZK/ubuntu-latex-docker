@@ -83,4 +83,4 @@ jobs:
           DOCKERHUB_REPOSITORY: '${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_ID'
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         env:
-          REGISTRY_TOKEN: ${{ secrets.DOCKERHUB_PAT }
+          REGISTRY_TOKEN: ${{ secrets.DOCKERHUB_PAT }}
